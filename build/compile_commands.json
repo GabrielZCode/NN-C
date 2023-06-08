@@ -1,0 +1,44 @@
+[
+{
+  "directory": "/home/zenville/Documentos/C/NN/build",
+  "command": "/usr/bin/clang  -I/home/zenville/Documentos/C/NN/include -lm -o CMakeFiles/NN.dir/main.c.o -c /home/zenville/Documentos/C/NN/main.c",
+  "file": "/home/zenville/Documentos/C/NN/main.c",
+  "output": "CMakeFiles/NN.dir/main.c.o"
+},
+{
+  "directory": "/home/zenville/Documentos/C/NN/build",
+  "command": "/usr/bin/clang  -I/home/zenville/Documentos/C/NN/include -lm -o CMakeFiles/NN.dir/src/double.c.o -c /home/zenville/Documentos/C/NN/src/double.c",
+  "file": "/home/zenville/Documentos/C/NN/src/double.c",
+  "output": "CMakeFiles/NN.dir/src/double.c.o"
+},
+{
+  "directory": "/home/zenville/Documentos/C/NN/build",
+  "command": "/usr/bin/clang  -I/home/zenville/Documentos/C/NN/include -lm -o CMakeFiles/NN.dir/src/gates.c.o -c /home/zenville/Documentos/C/NN/src/gates.c",
+  "file": "/home/zenville/Documentos/C/NN/src/gates.c",
+  "output": "CMakeFiles/NN.dir/src/gates.c.o"
+},
+{
+  "directory": "/home/zenville/Documentos/C/NN/build",
+  "command": "/usr/bin/clang  -I/home/zenville/Documentos/C/NN/include -lm -o CMakeFiles/NN.dir/src/matrix.c.o -c /home/zenville/Documentos/C/NN/src/matrix.c",
+  "file": "/home/zenville/Documentos/C/NN/src/matrix.c",
+  "output": "CMakeFiles/NN.dir/src/matrix.c.o"
+},
+{
+  "directory": "/home/zenville/Documentos/C/NN/build",
+  "command": "/usr/bin/clang  -I/home/zenville/Documentos/C/NN/include -lm -o CMakeFiles/NN.dir/src/network.c.o -c /home/zenville/Documentos/C/NN/src/network.c",
+  "file": "/home/zenville/Documentos/C/NN/src/network.c",
+  "output": "CMakeFiles/NN.dir/src/network.c.o"
+},
+{
+  "directory": "/home/zenville/Documentos/C/NN/build",
+  "command": "/usr/bin/clang  -I/home/zenville/Documentos/C/NN/include -lm -o CMakeFiles/NN.dir/src/utils.c.o -c /home/zenville/Documentos/C/NN/src/utils.c",
+  "file": "/home/zenville/Documentos/C/NN/src/utils.c",
+  "output": "CMakeFiles/NN.dir/src/utils.c.o"
+},
+{
+  "directory": "/home/zenville/Documentos/C/NN/build",
+  "command": "/usr/bin/clang  -I/home/zenville/Documentos/C/NN/include -lm -o CMakeFiles/NN.dir/src/xor.c.o -c /home/zenville/Documentos/C/NN/src/xor.c",
+  "file": "/home/zenville/Documentos/C/NN/src/xor.c",
+  "output": "CMakeFiles/NN.dir/src/xor.c.o"
+}
+]

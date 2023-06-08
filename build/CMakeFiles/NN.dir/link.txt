@@ -1,0 +1,1 @@
+/usr/bin/clang -lm CMakeFiles/NN.dir/main.c.o CMakeFiles/NN.dir/src/double.c.o CMakeFiles/NN.dir/src/gates.c.o CMakeFiles/NN.dir/src/matrix.c.o CMakeFiles/NN.dir/src/network.c.o CMakeFiles/NN.dir/src/utils.c.o CMakeFiles/NN.dir/src/xor.c.o -o NN 
