@@ -2,5 +2,5 @@
 
 int train_gates();
 
-#endif // !GATES_NN
+#endif // !XOR_NN
 

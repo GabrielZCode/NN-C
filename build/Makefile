@@ -153,30 +153,6 @@ main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/NN.dir/build.make CMakeFiles/NN.dir/main.c.s
 .PHONY : main.c.s
 
-src/double.o: src/double.c.o
-.PHONY : src/double.o
-
-# target to build an object file
-src/double.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/NN.dir/build.make CMakeFiles/NN.dir/src/double.c.o
-.PHONY : src/double.c.o
-
-src/double.i: src/double.c.i
-.PHONY : src/double.i
-
-# target to preprocess a source file
-src/double.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/NN.dir/build.make CMakeFiles/NN.dir/src/double.c.i
-.PHONY : src/double.c.i
-
-src/double.s: src/double.c.s
-.PHONY : src/double.s
-
-# target to generate assembly for a file
-src/double.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/NN.dir/build.make CMakeFiles/NN.dir/src/double.c.s
-.PHONY : src/double.c.s
-
 src/gates.o: src/gates.c.o
 .PHONY : src/gates.o
 
@@ -273,30 +249,6 @@ src/utils.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/NN.dir/build.make CMakeFiles/NN.dir/src/utils.c.s
 .PHONY : src/utils.c.s
 
-src/xor.o: src/xor.c.o
-.PHONY : src/xor.o
-
-# target to build an object file
-src/xor.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/NN.dir/build.make CMakeFiles/NN.dir/src/xor.c.o
-.PHONY : src/xor.c.o
-
-src/xor.i: src/xor.c.i
-.PHONY : src/xor.i
-
-# target to preprocess a source file
-src/xor.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/NN.dir/build.make CMakeFiles/NN.dir/src/xor.c.i
-.PHONY : src/xor.c.i
-
-src/xor.s: src/xor.c.s
-.PHONY : src/xor.s
-
-# target to generate assembly for a file
-src/xor.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/NN.dir/build.make CMakeFiles/NN.dir/src/xor.c.s
-.PHONY : src/xor.c.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -309,9 +261,6 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... src/double.o"
-	@echo "... src/double.i"
-	@echo "... src/double.s"
 	@echo "... src/gates.o"
 	@echo "... src/gates.i"
 	@echo "... src/gates.s"
@@ -324,9 +273,6 @@ help:
 	@echo "... src/utils.o"
 	@echo "... src/utils.i"
 	@echo "... src/utils.s"
-	@echo "... src/xor.o"
-	@echo "... src/xor.i"
-	@echo "... src/xor.s"
 .PHONY : help
 
 

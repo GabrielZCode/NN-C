@@ -1,3 +1,0 @@
-/home/zenville/Documentos/C/NN/build/CMakeFiles/NN.dir
-/home/zenville/Documentos/C/NN/build/CMakeFiles/edit_cache.dir
-/home/zenville/Documentos/C/NN/build/CMakeFiles/rebuild_cache.dir

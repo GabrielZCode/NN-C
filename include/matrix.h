@@ -1,8 +1,12 @@
-#include "xor.h"
+#include "gates.h"
 #include <stdio.h>
 #ifndef MATRIX_OP
+#define MATRIX_OP
 
-#define print_matrix_and_name(m) print_matrix(m, #m)
+#ifndef NN_ALLOC
+#define NN_ALLOC malloc
+#endif /* !NN_ALLOC */
+
 
 typedef struct{
   size_t rows;
@@ -13,12 +17,8 @@ typedef struct{
 
 #define MAT_AT(m, i ,j) (m).values[(i)*(m).stride + (j)] 
 
-float cost_function(int rows, int cols,  float* matrix_ptr, float weigth, float bias);
-float cost_function_gates(int rows, int cols,  float* matrix_ptr, float weigth, float weigth2, float bias);
-float* dot_product(int rows, int cols,  float* matrix_ptr, float weigth, float bias, float *result);
-float* dot_product_gates(int rows, int cols,  float* matrix_ptr, float weigth, float weigth2, float bias,float *result);
-void print_matrix(Mat m, const char *name);
-
+#define print_matrix_and_name(m) print_matrix(m, #m , 2)
+void print_matrix(Mat m, const char *name, size_t padding);
 
 Mat mat_alloc(size_t rows, size_t cols);
 void mat_rand(Mat m, float low, float high);

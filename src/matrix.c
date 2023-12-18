@@ -6,30 +6,26 @@
 #include <stdlib.h>
 #include <assert.h>
 
-#ifndef NN_ALLOC
-#define NN_ALLOC malloc
-#endif /* !NN_ALLOC */
 
 
-
-void print_matrix(Mat m, const char *name){
+void print_matrix(Mat m, const char *name, size_t padding){
   size_t rows = m.rows;
   size_t cols = m.cols;
   float* matrix = m.values;
-  printf(" %s = [ \n", name); 
+  printf("%*s%s\t",(int) padding , "", name);
   for(int i=0 ; i< rows; ++i){
-      printf("\t[");
-     for(int j =0; j< cols ; ++j){
+    printf("[  "); 
+    for(int j =0; j< cols ; ++j){
       float elem = (MAT_AT(m, i, j));
       //float elem = *(matrix + (i*cols) + j);
       _Bool last_elem = (j+1) == cols;
-      last_elem ? printf(" %f ", elem) : printf(" %f", elem); 
+      last_elem ? printf("%f  ]", (int) padding,"", elem) : printf("%f ",(int) padding,"",elem); 
      }
-      printf("]\n");
+     printf("\n%*s\t", (int)padding, "");
   }
-  printf("] \n"); 
+  printf("%*s \n", (int)padding, "");
 };
-
+/*
 float cost_function(int rows, int cols, float* matrix, float w, float b){
   float cost = 0.0f;
   for(int i=0 ; i< rows; ++i){
@@ -38,7 +34,7 @@ float cost_function(int rows, int cols, float* matrix, float w, float b){
       //printf("\t x: %f \n", elem0);
       float y = sigmoid((elem0 * w) + b);
       //printf("\t y: %f \n", y);
-      float elem1 = *(matrix + (i*cols) + 1);
+      float elem1 = *(matrix + (i*cols) + 1);  ITERATE OVER MATRIX WITH ONLY ONE FOR LOOP
       float diff = y - elem1;
       cost += diff*diff;
       //printf("\t elem: %f, expected: %f , result: %f, diff: %f \n", elem0, elem1, y, diff);
@@ -48,46 +44,8 @@ float cost_function(int rows, int cols, float* matrix, float w, float b){
   cost /= rows;
   return cost;
 };
-float cost_function_gates(int rows, int cols, float* matrix, float w, float w2, float bias){
-  float cost = 0.0f;
-  for(int i=0 ; i< rows; ++i){
-      //printf("{ \n");
-      float elem0 = *(matrix + (i*cols));
-      float elem1 = *(matrix + (i*cols)+1);
-      //printf("\t x: %f \n", elem0);
-      float y = sigmoid((elem0 * w) + (elem1 * w2) + bias);
-      //printf("\t y: %f \n", y);
-      float elem2 = *(matrix + (i*cols) + 2);
-      float diff = y - elem2;
-      cost += diff*diff;
-      //printf("\t elem: %f, expected: %f , result: %f, diff: %f \n", elem0, elem1, y, diff);
-      //printf("} \n");
-  }
+*/
 
-  cost /= rows;
-  return cost;
-};
-
-float* dot_product(int rows, int cols, float* matrix, float w, float b, float* result){
-  for(int i=0; i< rows; ++i){
-    float x = (*(matrix + (i*cols)));
-    float y = (x* w) +b;
-    (*(result + (i))) = y;
-  }
-  return result;
-}
-
-float* dot_product_gates(int rows, int cols, float* matrix, float w, float w2, float bias, float* result){
-
-  for(int i=0; i< rows; ++i){
-    float x = (*(matrix + (i*cols)));
-    float x2 = (*(matrix + (i*cols)+1));
-    float y = sigmoid((x * w) + (x2* w2)+ bias);
-    printf("y: %f \n", y);
-    (*(result + (i))) = y;
-  }
-  return result;
-}
 
 
 Mat mat_alloc(size_t rows, size_t cols){

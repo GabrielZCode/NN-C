@@ -1,69 +1,80 @@
 #include "utils.h"
 #include "matrix.h"
+#include "network.h"
+#include <stddef.h>
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
 
-
-float train_data_gates_OR[][3] = {
-  {0, 0, 0},
-  {1, 0, 1},
-  {0, 1, 1},
-  {1, 1, 1},
+float train_data_gates_XOR[] = {
+  0, 0, 0,
+  1, 0, 1,
+  0, 1, 1,
+  1, 1, 0,
 };
 
-float train_data_gates_AND[][3] = {
-  {0, 0, 0},
-  {1, 0, 0},
-  {0, 1, 0},
-  {1, 1, 1},
+
+float train_data_gates_OR[] = {
+  0, 0, 0,
+  1, 0, 1,
+  0, 1, 1,
+  1, 1, 1,
 };
 
-float train_data_gates_NAND[][3] = {
-  {0, 0, 1},
-  {1, 0, 1},
-  {0, 1, 1},
-  {1, 1, 0},
+float train_data_gates_AND[] = {
+  0, 0, 0,
+  1, 0, 0,
+  0, 1, 0,
+  1, 1, 1,
 };
 
-#define rows (sizeof(train_data_gates_OR)/sizeof(train_data_gates_OR[0]))
-#define cols (sizeof(train_data_gates_OR[0])/sizeof(train_data_gates_OR[0][0]))
+float train_data_gates_NAND[] = {
+  0, 0, 1,
+  1, 0, 1,
+  0, 1, 1,
+  1, 1, 0,
+};
 
-float result_gates[rows] = {};
+#define td train_data_gates_NAND
 
 int train_gates(){
-  float learning_rate = 1e-1;
-  float eps = 1e-1;
-  float* matrix_ptr = &train_data_gates_NAND[0][0];
-  float weigth = rand_float();
-  float bias = rand_float();
-  float weigth2 = rand_float();
-  float bias2 = 0.0f;
-//  print_matrix(rows,cols, matrix_ptr);
-  
-  for(size_t i =0 ; i < 240000 ; ++i){
-      float default_cost = cost_function_gates(rows, cols, matrix_ptr, weigth, weigth2, bias);
-      float dw = (cost_function_gates(rows, cols, matrix_ptr, (weigth + eps), weigth2, bias) - default_cost)/eps;
-      float dw2 = (cost_function_gates(rows, cols, matrix_ptr, weigth, (weigth2+eps), bias) - default_cost)/eps;
-      float db = (cost_function_gates(rows, cols, matrix_ptr, weigth, weigth2, (bias+ eps)) - default_cost)/eps;
-    //  float db2 = (cost_function(rows, cols, matrix_ptr, weigth2, (bias2+ eps)) - default_cost2)/eps;
-      weigth -= (dw*learning_rate);
-      bias -= (db*learning_rate);
-      weigth2 -= (dw2*learning_rate);
-    //  bias2 -= (db2*learning_rate);
+  size_t samples = sizeof(td)/sizeof(td[0])/3;
+  float eps =  1e-1;
+  float rate =  1e-1;
+  Mat input = {
+    .rows = samples,
+    .cols = 2,
+    .stride = 3,
+    .values = td
+  };
+  Mat output = { 
+    .rows = samples,
+    .cols = 1,
+    .stride = 3,
+    .values = &td[2]
+  };
 
-      printf("cost: %f w: %f, w2: %f, b: %f\n" , cost_function_gates(rows,cols,matrix_ptr,weigth, weigth2, bias), weigth, weigth2 , bias);
-  }
+  size_t arch[] = {2, 2, 1};
+  NN nn = NN_ALLOC_MAT(arch);
+  NN g = NN_ALLOC_MAT(arch);
+  nn_rand(nn, 0.f, 1.f);
   
-  printf("Weigth: %f \n", weigth);
-  printf("Weigth2: %f \n", weigth2);
-  printf("Bias: %f \n", bias);
-  dot_product_gates(rows,cols, matrix_ptr, weigth, weigth2,bias,  &result_gates[0]);
-  printf(" Result: [ \n");
-  for( int i=0; i< rows ; i++){
-     printf("\t %f \n", result_gates[i]);
+//  printf("cost %f\n",nn_cost(nn,input, output));
+  for(size_t i =0 ; i < 100000*10 ; i++){
+    nn_finite_diff(nn, g, eps, input, output);
+    learn(nn, g, rate);
+  //  printf("cost %f\n",nn_cost(nn,input, output));
   }
-  printf("] \n");
-  
+
+  NN_PRINT(nn);
+  for(size_t i=0 ; i < 2 ; ++i){
+    for(size_t j =0 ; j< 2 ; ++j){
+      MAT_AT(NN_INPUT(nn), 0, 0) = i;
+      MAT_AT(NN_INPUT(nn), 0, 1) = j;
+      nn_forward(nn);
+      printf(" %zu * %zu == %f \n", i, j, MAT_AT(NN_OUTPUT(nn), 0, 0));
+    }
+  }
   return 0;
 }

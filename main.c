@@ -1,7 +1,6 @@
 #include "utils.h"
-#include "double.h"
-#include "gates.h"
 #include "matrix.h"
+#include "network.h"
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -11,6 +10,6 @@
 
 int main(){
   srand(time(0));
-  train_xor();
+  train_gates();
   return 0;
 }
