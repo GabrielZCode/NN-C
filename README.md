@@ -1,0 +1,2 @@
+Projeto de Rede Neural simples fazendo todos os calculos matrizes com uma matriz input aleatoria e uma matriz output com os valores esperados, fazendo calculo de cost (diferenca entre os valores recebido e esperado), ajustando os weights das matrizes para se aproximar ao valor esperado
+projeto feito com base no projeto nn.h https://github.com/tsoding/nn.h, os projetos nao sao copia, por diferirem em algumas decisoes de calculo , mas deixo os creditos por ter utilizado ele de base.
